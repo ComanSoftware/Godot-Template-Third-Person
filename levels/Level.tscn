@@ -30,5 +30,6 @@ mesh = SubResource("BoxMesh_q2bx5")
 
 [node name="Light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-light_energy = 4.382
-omni_range = 13.059
+light_energy = 10.0
+light_volumetric_fog_energy = 8.65
+omni_range = 30.0
