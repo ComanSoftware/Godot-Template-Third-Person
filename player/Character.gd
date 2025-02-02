@@ -27,7 +27,7 @@ func _physics_process(delta):
 		direction = direction.rotated(Vector3(0,1,0), camera_y.rotation.y)
 		# Rotate body of character in the direction of the camera
 		# If the player is currently still, rotate with an animation
-		if !velocity:
+		if velocity.x == 0 and velocity.z == 0:
 			tween_body = get_tree().create_tween()
 			tween_body.tween_property(
 				body,
