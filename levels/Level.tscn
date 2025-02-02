@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjclmouxb8kuk"]
+
+[ext_resource type="Texture2D" uid="uid://caqufhkkheaie" path="res://levels/Tiles015_4K-JPG_Color.jpg" id="1_sy63e"]
+[ext_resource type="Texture2D" uid="uid://k613046ywetu" path="res://levels/Tiles015_4K-JPG_NormalGL.jpg" id="2_pyn44"]
+[ext_resource type="Texture2D" uid="uid://d3jun0eh7p42c" path="res://levels/Tiles015_4K-JPG_Roughness.jpg" id="3_sxco8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_btah0"]
+size = Vector3(16.565, 0, 20.255)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nkt77"]
+albedo_texture = ExtResource("1_sy63e")
+roughness_texture = ExtResource("3_sxco8")
+normal_enabled = true
+normal_texture = ExtResource("2_pyn44")
+uv1_scale = Vector3(20, 20, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q2bx5"]
+material = SubResource("StandardMaterial3D_nkt77")
+size = Vector3(16.565, 0, 20.255)
+
+[node name="Level" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="Collision" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_btah0")
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_q2bx5")
+
+[node name="Light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_energy = 4.382
+omni_range = 13.059
