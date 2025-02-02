@@ -3,6 +3,10 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+@onready var camera_y = $"Camera View/Y Rotation"
+@onready var body = $"Body"
+
+var tween_body: Tween
 
 
 func _physics_process(delta):
@@ -19,6 +23,20 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
+		# Rotate movement to direction of the camera
+		direction = direction.rotated(Vector3(0,1,0), camera_y.rotation.y)
+		# Rotate body of character in the direction of the camera
+		# If the player is currently still, rotate with an animation
+		if !velocity:
+			tween_body = get_tree().create_tween()
+			tween_body.tween_property(
+				body,
+				"rotation",
+				Vector3(0, camera_y.rotation.y, 0),
+				0.3,
+			)
+		else:
+			body.rotation.y = camera_y.rotation.y
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:

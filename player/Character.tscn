@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cvrgn6wdj73pc"]
 
-[ext_resource type="Script" path="res://player/Player.gd" id="1_gklae"]
+[ext_resource type="Script" path="res://player/Character.gd" id="1_gklae"]
 [ext_resource type="Script" path="res://player/CameraView.gd" id="2_umrmf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_146a4"]
@@ -10,21 +10,21 @@
 [sub_resource type="BoxMesh" id="BoxMesh_3fbv3"]
 size = Vector3(0.13, 0.145, 0.84)
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Character" type="CharacterBody3D"]
 script = ExtResource("1_gklae")
 
-[node name="CollisionBox" type="CollisionShape3D" parent="."]
+[node name="Body" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_146a4")
 
-[node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="Model" type="MeshInstance3D" parent="Body"]
 mesh = SubResource("CapsuleMesh_6oqfq")
+skeleton = NodePath("../../../..")
 
-[node name="Weapon" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+[node name="Weapon" type="Node3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Weapon"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Weapon"]
 transform = Transform3D(0.984808, 0.0622299, 0.162115, 0, 0.93358, -0.358368, -0.173648, 0.352924, 0.919397, 0.190776, -0.401462, -0.795425)
 mesh = SubResource("BoxMesh_3fbv3")
 

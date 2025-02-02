@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://bjclmouxb8kuk" path="res://levels/Level.tscn" id="1_lsyv6"]
 [ext_resource type="Script" path="res://Main.gd" id="1_mkur0"]
-[ext_resource type="PackedScene" uid="uid://cvrgn6wdj73pc" path="res://player/Player.tscn" id="2_ua0wb"]
+[ext_resource type="PackedScene" uid="uid://cvrgn6wdj73pc" path="res://player/Character.tscn" id="2_ua0wb"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_mkur0")
 
 [node name="Level" parent="." instance=ExtResource("1_lsyv6")]
 
-[node name="Player" parent="." instance=ExtResource("2_ua0wb")]
+[node name="Character" parent="." instance=ExtResource("2_ua0wb")]
