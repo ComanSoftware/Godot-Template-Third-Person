@@ -20,13 +20,17 @@ shape = SubResource("CapsuleShape3D_146a4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_6oqfq")
 
-[node name="Rotation Helper" type="Node3D" parent="."]
+[node name="Weapon" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="Camera" type="Camera3D" parent="Rotation Helper"]
-
-[node name="Weapon" type="Node3D" parent="Rotation Helper"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Rotation Helper/Weapon"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Weapon"]
 transform = Transform3D(0.984808, 0.0622299, 0.162115, 0, 0.93358, -0.358368, -0.173648, 0.352924, 0.919397, 0.190776, -0.401462, -0.795425)
 mesh = SubResource("BoxMesh_3fbv3")
+
+[node name="Y Rotation" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="X Rotation" type="Node3D" parent="Y Rotation"]
+
+[node name="Camera" type="Camera3D" parent="Y Rotation/X Rotation"]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 4)

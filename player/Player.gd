@@ -5,7 +5,8 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENSITIVITY = 0.05
 
-@onready var rotation_helper = $"Rotation Helper"
+@onready var y_rotation = $"Y Rotation"
+@onready var x_rotation = $"Y Rotation/X Rotation"
 
 
 func _physics_process(delta):
@@ -33,9 +34,9 @@ func _physics_process(delta):
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotation_helper.rotate_x(deg_to_rad(event.relative.y * MOUSE_SENSITIVITY * -1))
-		self.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+		x_rotation.rotate_x(deg_to_rad(event.relative.y * MOUSE_SENSITIVITY * -1))
+		y_rotation.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
 
-		var camera_rot = rotation_helper.rotation_degrees
-		camera_rot.x = clamp(camera_rot.x, -70, 70)
-		rotation_helper.rotation_degrees = camera_rot
+		var camera_rot = x_rotation.rotation_degrees
+		camera_rot.x = clamp(camera_rot.x, -40, 40)
+		x_rotation.rotation_degrees = camera_rot
