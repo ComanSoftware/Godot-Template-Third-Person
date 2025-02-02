@@ -35,6 +35,7 @@ func _physics_process(delta):
 				Vector3(0, camera_y.rotation.y, 0),
 				0.3,
 			)
+		# Otherwise rotate instantly
 		else:
 			body.rotation.y = camera_y.rotation.y
 		velocity.x = direction.x * SPEED
