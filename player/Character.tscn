@@ -29,7 +29,7 @@ transform = Transform3D(0.984808, 0.0622299, 0.162115, 0, 0.93358, -0.358368, -0
 mesh = SubResource("BoxMesh_3fbv3")
 
 [node name="Camera View" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 script = ExtResource("2_umrmf")
 
 [node name="Y Rotation" type="Node3D" parent="Camera View"]
@@ -37,4 +37,4 @@ script = ExtResource("2_umrmf")
 [node name="X Rotation" type="Node3D" parent="Camera View/Y Rotation"]
 
 [node name="Camera" type="Camera3D" parent="Camera View/Y Rotation/X Rotation"]
-transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
