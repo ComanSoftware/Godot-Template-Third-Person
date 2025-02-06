@@ -20,6 +20,7 @@ extends Node3D
 var tween_zoom: Tween
 # Target zoom level 
 var _zoom_level := 4.0
+var _last_zoom_level := 4.0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -55,6 +56,11 @@ func _unhandled_input(event):
 	# Zoom out
 	if event.is_action_pressed("zoom_out"):
 		_set_zoom_level(_zoom_level + zoom_factor)
+	# Aim
+	if event.is_action_pressed("aim"):
+		_aim(true)
+	if event.is_action_released("aim"):
+		_aim(false)
 
 
 func _set_zoom_level(value: float):
@@ -66,5 +72,24 @@ func _set_zoom_level(value: float):
 		camera,
 		"position",
 		Vector3(1, 0, _zoom_level),
+		zoom_duration,
+	)
+
+
+func _aim(aim: bool):
+	var target: Vector3
+	if aim:
+		# If set is true, store the current zoom_level and set target
+		_last_zoom_level = camera.position.z
+		target = Vector3(1, 0, 1)
+	else:
+		# Else set the target to the last camera position
+		target = Vector3(1, 0, _last_zoom_level)
+	# Create the zoom tween to aim or backup from aiming
+	tween_zoom = get_tree().create_tween()
+	tween_zoom.tween_property(
+		camera,
+		"position",
+		target,
 		zoom_duration,
 	)
