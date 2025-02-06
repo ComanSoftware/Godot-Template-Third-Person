@@ -39,7 +39,7 @@ func _unhandled_input(event):
 		y_rotation.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
 
 		var camera_rot = x_rotation.rotation_degrees
-		camera_rot.x = clamp(camera_rot.x, -50, 5)
+		camera_rot.x = clamp(camera_rot.x, -60, 10)
 		x_rotation.rotation_degrees = camera_rot
 	# Remove capture of mouse
 	if event.is_action_pressed("ui_cancel"):
@@ -65,6 +65,6 @@ func _set_zoom_level(value: float):
 	tween_zoom.tween_property(
 		camera,
 		"position",
-		Vector3(0, 0, _zoom_level),
+		Vector3(1, 0, _zoom_level),
 		zoom_duration,
 	)
