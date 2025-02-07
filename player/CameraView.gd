@@ -13,7 +13,8 @@ extends Node3D
 
 @onready var y_rotation = $"Y Rotation"
 @onready var x_rotation = $"Y Rotation/X Rotation"
-@onready var camera = $"Y Rotation/X Rotation/Camera"
+@onready var camera = $"Y Rotation/X Rotation/CameraArm/Camera"
+@onready var camera_arm = $"Y Rotation/X Rotation/CameraArm"
 @onready var character = get_parent()
 
 # Tween for zoom
@@ -25,6 +26,7 @@ var _zoom_level := 4.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	camera_arm.spring_length = _zoom_level
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,7 +41,7 @@ func _unhandled_input(event):
 		y_rotation.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
 
 		var camera_rot = x_rotation.rotation_degrees
-		camera_rot.x = clamp(camera_rot.x, -60, 10)
+		camera_rot.x = clamp(camera_rot.x, -60, 50)
 		x_rotation.rotation_degrees = camera_rot
 	# Remove capture of mouse
 	if event.is_action_pressed("ui_cancel"):
@@ -68,26 +70,26 @@ func _set_zoom_level(value: float):
 	# Zoom animation
 	tween_zoom = get_tree().create_tween()
 	tween_zoom.tween_property(
-		camera,
-		"position",
-		Vector3(1, 0, _zoom_level),
+		camera_arm,
+		"spring_length",
+		_zoom_level,
 		zoom_duration,
 	)
 
 
 func _aim(aim: bool):
-	var target: Vector3
+	var target: float
 	if aim:
 		# If set is true, store the current zoom_level and set target
-		target = Vector3(1, 0, 1)
+		target = 1
 	else:
 		# Else set the target to the last camera position
-		target = Vector3(1, 0, _zoom_level)
+		target = _zoom_level
 	# Create the zoom tween to aim or backup from aiming
 	tween_zoom = get_tree().create_tween()
 	tween_zoom.tween_property(
-		camera,
-		"position",
+		camera_arm,
+		"spring_length",
 		target,
 		zoom_duration,
 	)

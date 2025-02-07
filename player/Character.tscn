@@ -36,8 +36,11 @@ script = ExtResource("2_umrmf")
 
 [node name="X Rotation" type="Node3D" parent="Camera View/Y Rotation"]
 
-[node name="Camera" type="Camera3D" parent="Camera View/Y Rotation/X Rotation"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 6)
+[node name="CameraArm" type="SpringArm3D" parent="Camera View/Y Rotation/X Rotation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Camera" type="Camera3D" parent="Camera View/Y Rotation/X Rotation/CameraArm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
