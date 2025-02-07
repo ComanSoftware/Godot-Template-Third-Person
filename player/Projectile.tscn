@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5svufg4at7id"]
+
+[ext_resource type="Script" path="res://player/projectile.gd" id="1_4ja2e"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewgkj"]
+friction = 0.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k8a6f"]
+radius = 0.05
+height = 0.2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d5yvx"]
+radius = 0.05
+height = 0.2
+
+[node name="Projectile" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_ewgkj")
+script = ExtResource("1_4ja2e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_k8a6f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_d5yvx")
+skeleton = NodePath("")
