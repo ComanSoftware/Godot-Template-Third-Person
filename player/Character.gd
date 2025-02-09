@@ -34,13 +34,7 @@ func _physics_process(delta):
 		# Rotate body of character in the direction of the camera
 		# If the player is currently still, rotate with an animation
 		if velocity.x == 0 and velocity.z == 0:
-			tween_body = get_tree().create_tween()
-			tween_body.tween_property(
-				body,
-				"rotation",
-				Vector3(0, camera.global_rotation.y, 0),
-				0.3,
-			)
+			rotate_player(camera.global_rotation.y, 0.3)
 		# Otherwise rotate instantly
 		else:
 			body.rotation.y = camera.global_rotation.y
@@ -59,13 +53,7 @@ func _unhandled_input(event):
 		# Get direction
 		var direction = -1 * camera.global_transform.basis.z
 		# Rotate Player in direction of shot
-		tween_body = get_tree().create_tween()
-		tween_body.tween_property(
-			body,
-			"rotation",
-			Vector3(0, camera.global_rotation.y, 0),
-			0,
-		)
+		rotate_player(camera.global_rotation.y, 0)
 		await tween_body.finished
 		# Find nearest point to the weapon on the direction of the shot
 		var vector_to_weapon = weapon.global_position - camera.global_position
@@ -76,3 +64,13 @@ func _unhandled_input(event):
 		projectile.position = closest_point
 		projectile.direction = direction
 		attack_nodes.add_child(projectile)
+
+
+func rotate_player(rotation_value:float, time:float):
+	tween_body = get_tree().create_tween()
+	tween_body.tween_property(
+		body,
+		"quaternion",
+		Quaternion(Vector3(0,1,0), rotation_value),
+		time,
+	)
