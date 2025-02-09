@@ -22,10 +22,10 @@ mesh = SubResource("CapsuleMesh_6oqfq")
 skeleton = NodePath("../../../..")
 
 [node name="Weapon" type="Node3D" parent="Body"]
-transform = Transform3D(0.794415, 0, -0.607376, 0, 1, 0, 0.607376, 0, 0.794415, 0, 0.5, 0)
+transform = Transform3D(0.794415, 0, -0.607376, 0, 1, 0, 0.607376, 0, 0.794415, 0.765054, 0.353731, -0.697568)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Weapon"]
-transform = Transform3D(0.984808, 0.0622299, 0.162115, 0, 0.93358, -0.358368, -0.173648, 0.352924, 0.919397, 0.190776, -0.401462, -0.795425)
+transform = Transform3D(0.984808, 0.0622299, 0.162115, 0, 0.93358, -0.358368, -0.173648, 0.352924, 0.919397, 0.0850965, -0.162692, 0.397518)
 mesh = SubResource("BoxMesh_3fbv3")
 
 [node name="Camera View" type="Node3D" parent="."]

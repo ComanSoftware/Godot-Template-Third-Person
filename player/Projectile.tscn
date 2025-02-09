@@ -14,12 +14,16 @@ radius = 0.05
 height = 0.2
 
 [node name="Projectile" type="RigidBody3D"]
+collision_layer = 0
+collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_ewgkj")
 script = ExtResource("1_4ja2e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_k8a6f")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_d5yvx")
 skeleton = NodePath("")

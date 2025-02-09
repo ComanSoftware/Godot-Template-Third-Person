@@ -10,3 +10,5 @@ script = ExtResource("1_mkur0")
 [node name="Level" parent="." instance=ExtResource("1_lsyv6")]
 
 [node name="Character" parent="." instance=ExtResource("2_ua0wb")]
+
+[node name="AttackNodes" type="Node3D" parent="."]

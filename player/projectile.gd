@@ -1,7 +1,7 @@
 extends RigidBody3D
 
 
-const SPEED = 1200.0
+const SPEED = 50
 var direction: Vector3
 
 
@@ -9,11 +9,12 @@ var direction: Vector3
 func _ready():
 	var velocity = SPEED * direction
 	apply_impulse(velocity)
+	look_at(position + direction)
 
 
 func _physics_process(_delta):
 	# If slowed down, delete
-	if linear_velocity.length() < 80:
+	if linear_velocity.length() > 0 and linear_velocity.length() < 5:
 		queue_free()
 	
 	# If lot of distance to camera, delete
