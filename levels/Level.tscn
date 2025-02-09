@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d3jun0eh7p42c" path="res://levels/Tiles015_4K-JPG_Roughness.jpg" id="3_sxco8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_btah0"]
-size = Vector3(16.565, 0, 20.255)
+size = Vector3(16.565, 1, 20.255)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nkt77"]
 albedo_texture = ExtResource("1_sy63e")
@@ -23,6 +23,7 @@ size = Vector3(16.565, 0, 20.255)
 [node name="Floor" type="StaticBody3D" parent="."]
 
 [node name="Collision" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_btah0")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor"]
